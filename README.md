@@ -1,0 +1,2 @@
+# textvar
+Generate text variants
