@@ -43,11 +43,15 @@ fun parseArguments(args: Array<String>): Arguments {
     }
 
     val left = keyWordsValues["--borderLeft"]?.let {
-        requireUser(it.length == 1) { "Length of border character is 1" }
+        if (it.length != 1) {
+            showHelp("Length of left border character should be 1, not ${it.length} ($it)")
+        }
         it[0]
     } ?: DEFAULT_LEFT_BRACKET
     val right = keyWordsValues["--borderRight"]?.let {
-        requireUser(it.length == 1)  { "Length of border character is 1" }
+        if (it.length != 1) {
+            showHelp("Length of right border character should be 1, not ${it.length} ($it)")
+        }
         it[0]
     } ?: DEFAULT_RIGHT_BRACKET
     val separator = keyWordsValues["--separator"] ?: DEFAULT_SEPARATOR
