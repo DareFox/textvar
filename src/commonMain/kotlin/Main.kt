@@ -9,5 +9,7 @@ fun main(args: Array<String>) {
 }
 
 fun actualMain(arguments: Arguments) {
-    borderErrorCheck(arguments)
+    unfoldTemplate(arguments).forEach {
+        println(it)
+    }
 }
