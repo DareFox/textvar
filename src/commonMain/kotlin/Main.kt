@@ -9,5 +9,5 @@ fun main(args: Array<String>) {
 }
 
 fun actualMain(arguments: Arguments) {
-    println(underlineString(0, "hey my name is"))
+    borderErrorCheck(arguments)
 }

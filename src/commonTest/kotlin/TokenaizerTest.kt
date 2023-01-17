@@ -1,7 +1,6 @@
 
 import kotlin.test.Test
 import kotlin.test.assertFails
-import kotlin.test.assertNotNull
 
 class TokenaizerTest {
     @Test
@@ -11,7 +10,7 @@ class TokenaizerTest {
         assertFails { borderErrorCheck(defaultSettings("[")) }
         assertFails { borderErrorCheck(defaultSettings("[][][]]")) }
         assertFails { borderErrorCheck(defaultSettings("]")) }
-        assertFails { borderErrorCheck(defaultSettings("[]["))  }
+        assertFails { borderErrorCheck(defaultSettings("[][")) }
         borderErrorCheck(defaultSettings("[]"))
         borderErrorCheck(defaultSettings("[][]"))
         borderErrorCheck(defaultSettings("[][][]              [              ]"))

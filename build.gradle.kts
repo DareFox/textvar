@@ -10,15 +10,15 @@ repositories {
 }
 
 kotlin {
-//    jvm {
-//        compilations.all {
-//            kotlinOptions.jvmTarget = "1.8"
-//        }
-//        withJava()
-//        testRuns["test"].executionTask.configure {
-//            useJUnitPlatform()
-//        }
-//    }
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = "1.8"
+        }
+        withJava()
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
     val hostOs = System.getProperty("os.name")
     val isMingwX64 = hostOs.startsWith("Windows")
     val nativeTarget = when {
@@ -37,7 +37,11 @@ kotlin {
     }
     sourceSets {
         val nativeMain by getting
-        val nativeTest by getting {
+        val nativeTest by getting
+        val jvmMain by getting
+        val jvmTest by getting
+        val commonMain by getting
+        val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
             }

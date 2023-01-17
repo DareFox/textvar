@@ -2,7 +2,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 fun underlineString(range: IntRange, text: String): String {
-    require(range.last <= text.lastIndex) {
+    require(range.last <= text.lastIndex && range.first >= 0) {
         "Underline (${range.first}..${range.last}) is out of range (0..${text.lastIndex})."
     }
 
