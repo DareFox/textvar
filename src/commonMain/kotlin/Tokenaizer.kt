@@ -1,4 +1,6 @@
-private fun borderErrorCheck(arguments: Arguments) {
+// TODO: Make functions private AND testable
+
+fun borderErrorCheck(arguments: Arguments) {
     // stack of indexes of opened brackets
     val stack = mutableListOf<Int>()
 
