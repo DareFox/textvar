@@ -26,14 +26,21 @@ fun parseArguments(args: Array<String>): Arguments {
         }
 
         if (previous in keyWords) {
+            if (it in keyWords) {
+                showHelp("$previous argument is empty")
+            }
+
             keyWordsValues[previous] = it
         }
 
         previous = it
     }
 
-
     val text = keyWordsValues["--text"] ?: showHelp("--text argument is empty")
+
+    if (previous in keyWords) {
+        showHelp("$previous argument is empty")
+    }
 
     val left = keyWordsValues["--borderLeft"]?.let {
         requireUser(it.length == 1) { "Length of border character is 1" }
