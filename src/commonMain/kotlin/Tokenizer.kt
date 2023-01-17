@@ -38,7 +38,7 @@ fun unfoldTemplate(arguments: Arguments): Set<String> {
 
         textVariations.forEach { text ->
             val template = regex.find(text) ?: return@forEach
-            if (template != null) foundAnyTemplate = true
+            foundAnyTemplate = true
 
             newTextVariations += getTextVariations(template, text, arguments)
         }
