@@ -1,0 +1,114 @@
+name: Create native distributions
+
+on:  
+  release:
+    types: [published]
+      
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  buildLinux:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    name: Build Linux Native x86-64
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build binary
+        run: ./gradlew build
+      
+      - name: Find and save package path
+        run: |
+          cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_linux_x86-64
+          echo "FILEPATH=./textvar_linux_x86-64" >> $GITHUB_ENV
+        
+      - name: Upload package to Github release page
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ env.FILEPATH }}
+          tag: ${{ github.ref }}
+          overwrite: true
+        
+  buildWindows: 
+    runs-on: windows-latest
+    
+    name: Build Windows Native x86-64
+    
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: 17
+      
+      - name: Build package
+        run: ./gradlew.bat build
+      
+      - name: Find and save package path
+        run: |
+          cp $(find ./build/bin/native/releaseExecutable/ -iname "*.exe") ./textvar_x86-64.exe
+          echo "FILEPATH=./textvar_x86-64.exe" >> $GITHUB_ENV
+        shell: bash
+        
+      - name: Upload package to Github release page
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ env.FILEPATH }}
+          tag: ${{ github.ref }}
+          overwrite: true
+
+  buildMacOS:
+    # The type of runner that the job will run on
+    runs-on: macos-latest
+
+    name: Build MacOS .dmg package
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+      
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+      
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Build package
+        run: ./gradlew build
+      
+      - name: Find and save package path
+        run: |
+          cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_macos_x86-64
+          echo "FILEPATH=./textvar_macos_x86-64" >> $GITHUB_ENV
+        
+      - name: Upload package to Github release page
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ env.FILEPATH }}
+          tag: ${{ github.ref }}
+          overwrite: true
+      
