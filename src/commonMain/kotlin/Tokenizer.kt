@@ -29,7 +29,7 @@ fun unfoldTemplate(arguments: Arguments): Set<String> {
 
     val borderLeft = regexEscapeIfNecessary(arguments.leftBoundSymbol)
     val borderRight = regexEscapeIfNecessary(arguments.rightBoundSymbol)
-    val regex = "$borderLeft(?!.*$borderLeft).*?$borderRight".toRegex()
+    val regex = "$borderLeft(?!.*?$borderLeft).*?$borderRight".toRegex()
     var textVariations = setOf<String>(arguments.text)
 
     while (true) {
@@ -39,7 +39,6 @@ fun unfoldTemplate(arguments: Arguments): Set<String> {
         textVariations.forEach { text ->
             val template = regex.find(text) ?: return@forEach
             foundAnyTemplate = true
-
             newTextVariations += getTextVariations(template, text, arguments)
         }
 
