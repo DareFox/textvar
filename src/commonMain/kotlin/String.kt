@@ -10,8 +10,9 @@ fun underlineString(range: IntRange, text: String): String {
     val crop = text.substring(cropRange)
     var underline = ""
 
+    val newCroppedRange = (range.first - cropRange.first)..(range.last - cropRange.first)
     crop.forEachIndexed { index, _ ->
-        if (index in range) {
+        if (index in newCroppedRange) {
             underline += "^"
         } else {
             underline += " "
