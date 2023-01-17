@@ -7,6 +7,7 @@
 
 ### Arguments
 ```bash
+--help                          Show this help message
 --text                          Text with template. Required
 --borderLeft                    Character representing start of the template border. Default is [
 --borderRight                   Character representing end of the template border. Default is ]
