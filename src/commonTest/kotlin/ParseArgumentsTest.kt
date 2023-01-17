@@ -6,6 +6,9 @@ class ParseArgumentsTest {
     @Test
     fun testParseArguments() {
         assertFails { parseArguments(arrayOf("--text")) }
+        assertFails { parseArguments(arrayOf("--text", "hehe", "--imaginaryArgument")) }
+        assertFails { parseArguments(arrayOf("--imaginaryArgument")) }
+        assertFails { parseArguments(arrayOf("--help")) }
         assertFails { parseArguments(arrayOf()) }
         assertFails { parseArguments(arrayOf("--text", "smth", "--border")) }
         assertFails { parseArguments(arrayOf("--text", "smth", "--border", "{")) }
@@ -17,7 +20,9 @@ class ParseArgumentsTest {
         assertFails { parseArguments(arrayOf("--text", "smth", "--borderRight", "--borderLeft", "[")) }
 
         parseArguments(arrayOf("--text", "smth", "--border", "{}"))
+        parseArguments(arrayOf("--text", "--imaginaryArgumentButAsText", "--border", "{}"))
         parseArguments(arrayOf("--text", "smth", "--borderLeft", "{"))
+        parseArguments(arrayOf("--text", "smth", "--borderRight", "}"))
         parseArguments(arrayOf("--text", "smth", "--borderRight", "}"))
 
         val mixed = parseArguments(arrayOf(
