@@ -49,7 +49,7 @@ jobs:
         shell: bash
 
       - name: Make textvar executable
-        run: chmod +x ./textvar_macos_x86-64
+        run: chmod +x ./textvar_linux_x86-64
 
       - name: Upload package to Github release page
         uses: AButler/upload-release-assets@v2.0
