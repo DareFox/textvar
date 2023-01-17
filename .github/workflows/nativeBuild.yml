@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildDeb:
+  buildLinux:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -43,7 +43,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-tag: ${{ github.ref }}
         
-  buildExe: 
+  buildWindows: 
     runs-on: windows-latest
     
     name: Build Windows Native x86-64
@@ -73,7 +73,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-tag: ${{ github.ref }}
 
-  buildDmg:
+  buildMacOS:
     # The type of runner that the job will run on
     runs-on: macos-latest
 
