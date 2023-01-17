@@ -27,6 +27,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache: 'gradle'
 
       - name: Build binary
         run: ./gradlew build
@@ -57,6 +58,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache: 'gradle'
       
       - name: Build package
         run: ./gradlew.bat build
@@ -92,6 +94,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache: 'gradle'
 
       - name: Build package
         run: ./gradlew build
