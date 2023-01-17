@@ -17,7 +17,7 @@ fun parseArguments(args: Array<String>): Arguments {
     var previous = ""
     args.forEach {
         if (previous == "--border") {
-            require(it.length == 2) {
+            requireUser(it.length == 2) {
                 "--border accept only two characters representing left and right border"
             }
 
@@ -36,11 +36,11 @@ fun parseArguments(args: Array<String>): Arguments {
     val text = keyWordsValues["--text"] ?: showHelp("--text argument is empty")
 
     val left = keyWordsValues["--borderLeft"]?.let {
-        require(it.length == 1) { "Length of border character is 1" }
+        requireUser(it.length == 1) { "Length of border character is 1" }
         it[0]
     } ?: DEFAULT_LEFT_BRACKET
     val right = keyWordsValues["--borderRight"]?.let {
-        require(it.length == 1)  { "Length of border character is 1" }
+        requireUser(it.length == 1)  { "Length of border character is 1" }
         it[0]
     } ?: DEFAULT_RIGHT_BRACKET
     val separator = keyWordsValues["--separator"] ?: DEFAULT_SEPARATOR
@@ -58,5 +58,5 @@ fun showHelp(message: String?): Nothing {
         println("${it.key}\t\t\t${it.value}")
     }
 
-    throw Error("")
+    throw UserError("")
 }

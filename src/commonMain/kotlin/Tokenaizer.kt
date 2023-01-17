@@ -8,7 +8,7 @@ fun borderErrorCheck(arguments: Arguments) {
         }
 
         if (char == arguments.rightBoundSymbol) {
-            require(stack.isNotEmpty()) {
+            requireUser(stack.isNotEmpty()) {
                 "End of non-existing border at index $index\n\n" + underlineString(index, arguments.text)
             }
 
@@ -16,7 +16,7 @@ fun borderErrorCheck(arguments: Arguments) {
         }
     }
 
-    require(stack.isEmpty()) {
+    requireUser(stack.isEmpty()) {
         val last = stack.last()
         "Not closed border at index $last\n\n" + underlineString(last, arguments.text)
     }

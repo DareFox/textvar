@@ -1,8 +1,8 @@
 fun main(args: Array<String>) {
     try {
         actualMain(parseArguments(args))
-    } catch (ex: Throwable) {
-        if (ex.message?.isNotEmpty() == true) {
+    } catch(ex: UserError) {
+        if (ex.message != null) {
             println(ex.message)
         }
     }
