@@ -31,12 +31,22 @@ jobs:
 
       - name: Build binary
         run: ./gradlew build
+
+      - name: List native build
+        run: |
+          ls ./build/bin/native/releaseExecutable/ 
+        shell: bash
       
       - name: Find and copy package to current folder
         run: |
           cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_linux_x86-64
         shell: bash
         
+      - name: List current folder
+        run: |
+          ls
+        shell: bash
+
       - name: Upload package to Github release page
         uses: AButler/upload-release-assets@v2.0
         with:
@@ -63,11 +73,21 @@ jobs:
       - name: Build package
         run: ./gradlew.bat build
         
+      - name: List native build
+        run: |
+          ls ./build/bin/native/releaseExecutable/ 
+        shell: bash
+        
       - name: Find and copy package to current folder
         run: |
           cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*.exe") ./textvar_x86-64.exe
         shell: bash
         
+      - name: List current folder
+        run: |
+          ls
+        shell: bash
+
       - name: Upload package to Github release page
         uses: AButler/upload-release-assets@v2.0
         with:
@@ -107,6 +127,11 @@ jobs:
       - name: Find and copy package to current folder
         run: |
           cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_macos_x86-64
+        shell: bash
+        
+      - name: List current folder
+        run: |
+          ls
         shell: bash
         
       - name: Upload package to Github release page
