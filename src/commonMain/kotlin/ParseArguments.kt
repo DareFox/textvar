@@ -3,11 +3,11 @@ const val DEFAULT_RIGHT_BRACKET = ']'
 const val DEFAULT_SEPARATOR = ";"
 
 val arguments = mapOf<String, String>(
-    "--text" to "Text with template. Required",
+    "--text\t" to "Text with template. Required",
     "--borderLeft" to "Character representing start of the template border. Default is $DEFAULT_LEFT_BRACKET",
     "--borderRight" to "Character representing end of the template border. Default is $DEFAULT_RIGHT_BRACKET",
     "--separator" to "Separator of template. Default is $DEFAULT_SEPARATOR",
-    "--border" to "Two characters representing start and end of the border. Equals to '--borderLeft [ --borderRight ]"
+    "--border" to "Two characters representing start and end of the border. \"--border {}\" equals to \"--borderLeft { --borderRight }\""
 )
 
 fun parseArguments(args: Array<String>): Arguments {
