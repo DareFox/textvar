@@ -52,7 +52,6 @@ jobs:
         with:
           files: './textvar_linux_x86-64'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: ${{ github.ref }}
         
   buildWindows: 
     runs-on: windows-latest
@@ -93,7 +92,6 @@ jobs:
         with:
           files: './textvar_x86-64.exe'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: ${{ github.ref }}
 
   buildMacOS:
     # The type of runner that the job will run on
@@ -139,5 +137,4 @@ jobs:
         with:
           files: './textvar_macos_x86-64'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          release-tag: ${{ github.ref }}
       
