@@ -2,7 +2,8 @@
 *"I'm sure someone has already made such a program, but I can't find it"*
 ### Generate all possible unique text variants with nesting 
 
-![terminal2](https://user-images.githubusercontent.com/47672780/213027633-3179f408-aae5-4fbc-9ed8-98dab3655626.gif)
+![terminal2](https://user-images.githubusercontent.com/47672780/213028782-6566b29f-40a5-4bd5-a218-a360f2ebba05.gif)
+
 
 ### Arguments
 ```bash
