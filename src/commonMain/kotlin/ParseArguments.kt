@@ -54,8 +54,11 @@ fun showHelp(message: String?): Nothing {
         println()
     }
 
+    val longestString = arguments.keys.maxBy { it.length }
+
     arguments.forEach {
-        println("${it.key}\t\t\t${it.value}")
+        val wideKey = it.key.makeStringWideAs(longestString)
+        println("${wideKey}\t\t\t${it.value}")
     }
 
     throw UserError("")
