@@ -30,17 +30,19 @@ fun parseArguments(args: Array<String>): Arguments {
             keyWordsValues["--borderRight"] = it[1].toString()
         }
 
+        if (it !in keyWords && isArgumentLikeRegex.find(it) != null && previous != "--text") {
+            showHelp("Unknown argument $it")
+        }
+
         if (previous in keyWords) {
             if (it in keyWords) {
                 showHelp("$previous argument is empty")
             }
 
             keyWordsValues[previous] = it
-        } else {
-            if (isArgumentLikeRegex.find(it) != null && previous != "--text") {
-                showHelp("Unknown argument $it")
-            }
         }
+
+
 
         previous = it
     }
