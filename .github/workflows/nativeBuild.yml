@@ -39,7 +39,7 @@ jobs:
       
       - name: Find and copy package to current folder
         run: |
-          cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_linux_x86-64
+          cp ./build/bin/native/releaseExecutable/textvar.kexe ./textvar_linux_x86-64
         shell: bash
         
       - name: List current folder
@@ -50,7 +50,7 @@ jobs:
       - name: Upload package to Github release page
         uses: AButler/upload-release-assets@v2.0
         with:
-          files: 'textvar_linux_x86-64'
+          files: './textvar_linux_x86-64'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-tag: ${{ github.ref }}
         
@@ -80,7 +80,7 @@ jobs:
         
       - name: Find and copy package to current folder
         run: |
-          cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*.exe") ./textvar_x86-64.exe
+          cp ./build/bin/native/releaseExecutable/textvar.exe ./textvar_x86-64.exe
         shell: bash
         
       - name: List current folder
@@ -91,7 +91,7 @@ jobs:
       - name: Upload package to Github release page
         uses: AButler/upload-release-assets@v2.0
         with:
-          files: 'textvar_x86-64.exe'
+          files: './textvar_x86-64.exe'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-tag: ${{ github.ref }}
 
@@ -126,7 +126,7 @@ jobs:
 
       - name: Find and copy package to current folder
         run: |
-          cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_macos_x86-64
+           cp ./build/bin/native/releaseExecutable/textvar.kexe ./textvar_macos_x86-64
         shell: bash
         
       - name: List current folder
@@ -137,7 +137,7 @@ jobs:
       - name: Upload package to Github release page
         uses: AButler/upload-release-assets@v2.0
         with:
-          files: 'textvar_macos_x86-64'
+          files: './textvar_macos_x86-64'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           release-tag: ${{ github.ref }}
       
