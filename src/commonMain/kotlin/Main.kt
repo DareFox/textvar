@@ -1,10 +1,11 @@
 fun main(args: Array<String>) {
     try {
         actualMain(parseArguments(args))
-    } catch(ex: UserError) {
+    } catch (ex: UserError) {
         if (ex.message != null) {
             println(ex.message)
         }
+        exitCode(1)
     }
 }
 
@@ -13,3 +14,5 @@ fun actualMain(arguments: Arguments) {
         println(it)
     }
 }
+
+expect fun exitCode(code: Int)
