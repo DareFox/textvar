@@ -14,7 +14,7 @@ val arguments = mapOf<String, String>(
 fun parseArguments(args: Array<String>): Arguments {
     var keyWords = arguments.keys
     val keyWordsValues = mutableMapOf<String, String>()
-
+    val isArgumentLikeRegex = "--\\w*".toRegex()
     var previous = ""
     args.forEach {
         if (it == "--help") {
@@ -36,6 +36,10 @@ fun parseArguments(args: Array<String>): Arguments {
             }
 
             keyWordsValues[previous] = it
+        } else {
+            if (isArgumentLikeRegex.find(it) != null && previous != "--text") {
+                showHelp("Unknown argument $it")
+            }
         }
 
         previous = it
