@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="NewModuleRootManager">
+    <content url="file:///media/coding/Kotlin/textvar/src/jvmMain">
+      <sourceFolder url="file:///media/coding/Kotlin/textvar/src/jvmMain/kotlin" isTestSource="false" />
+      <sourceFolder url="file:///media/coding/Kotlin/textvar/src/jvmMain/resources" type="java-resource" />
+    </content>
+  </component>
+</module>
