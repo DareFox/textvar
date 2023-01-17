@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  buildLinux:
+  buildDeb:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -31,20 +31,19 @@ jobs:
       - name: Build binary
         run: ./gradlew build
       
-      - name: Find and save package path
+      - name: Find and copy package to current folder
         run: |
           cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_linux_x86-64
-          echo "FILEPATH=./textvar_linux_x86-64" >> $GITHUB_ENV
+        shell: bash
         
       - name: Upload package to Github release page
-        uses: svenstaro/upload-release-action@v2
+        uses: AButler/upload-release-assets@v2.0
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ env.FILEPATH }}
-          tag: ${{ github.ref }}
-          overwrite: true
+          files: 'textvar_linux_x86-64'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-tag: ${{ github.ref }}
         
-  buildWindows: 
+  buildExe: 
     runs-on: windows-latest
     
     name: Build Windows Native x86-64
@@ -61,22 +60,20 @@ jobs:
       
       - name: Build package
         run: ./gradlew.bat build
-      
-      - name: Find and save package path
+        
+      - name: Find and copy package to current folder
         run: |
-          cp $(find ./build/bin/native/releaseExecutable/ -iname "*.exe") ./textvar_x86-64.exe
-          echo "FILEPATH=./textvar_x86-64.exe" >> $GITHUB_ENV
+          cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*.exe") ./textvar_x86-64.exe
         shell: bash
         
       - name: Upload package to Github release page
-        uses: svenstaro/upload-release-action@v2
+        uses: AButler/upload-release-assets@v2.0
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ env.FILEPATH }}
-          tag: ${{ github.ref }}
-          overwrite: true
+          files: 'textvar_x86-64.exe'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-tag: ${{ github.ref }}
 
-  buildMacOS:
+  buildDmg:
     # The type of runner that the job will run on
     runs-on: macos-latest
 
@@ -99,16 +96,20 @@ jobs:
       - name: Build package
         run: ./gradlew build
       
-      - name: Find and save package path
+      - name: List native build
+        run: |
+          ls ./build/bin/native/releaseExecutable/ 
+        shell: bash
+
+      - name: Find and copy package to current folder
         run: |
           cp $(find ./build/bin/native/releaseExecutable/ -type f -iname "*") ./textvar_macos_x86-64
-          echo "FILEPATH=./textvar_macos_x86-64" >> $GITHUB_ENV
+        shell: bash
         
       - name: Upload package to Github release page
-        uses: svenstaro/upload-release-action@v2
+        uses: AButler/upload-release-assets@v2.0
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ env.FILEPATH }}
-          tag: ${{ github.ref }}
-          overwrite: true
+          files: 'textvar_macos_x86-64'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          release-tag: ${{ github.ref }}
       
