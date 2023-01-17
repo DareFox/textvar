@@ -69,7 +69,7 @@ private fun getTextVariations(matchResult: MatchResult, text: String, arguments:
     return textVariations
 }
 
-private fun regexEscapeIfNecessary(char: Char): String {
+fun regexEscapeIfNecessary(char: Char): String {
     val isLetter = "\\w".toRegex().find(char.toString()) != null
 
     return if (isLetter) {
