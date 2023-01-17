@@ -3,6 +3,7 @@ const val DEFAULT_RIGHT_BRACKET = ']'
 const val DEFAULT_SEPARATOR = ";"
 
 val arguments = mapOf<String, String>(
+    "--help" to "Show this help message",
     "--text" to "Text with template. Required",
     "--borderLeft" to "Character representing start of the template border. Default is $DEFAULT_LEFT_BRACKET",
     "--borderRight" to "Character representing end of the template border. Default is $DEFAULT_RIGHT_BRACKET",
@@ -16,6 +17,10 @@ fun parseArguments(args: Array<String>): Arguments {
 
     var previous = ""
     args.forEach {
+        if (it == "--help") {
+            showHelp(null)
+        }
+
         if (previous == "--border") {
             requireUser(it.length == 2) {
                 "--border accept only two characters representing left and right border"
