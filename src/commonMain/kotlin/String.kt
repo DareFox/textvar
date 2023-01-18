@@ -21,17 +21,6 @@ fun underlineString(range: IntRange, text: String): String {
 
     return crop + "\n" + underline
 }
-
-fun String.makeStringWideAs(referenceString: String): String {
-    val spaces = referenceString.length - this.length
-
-    if (spaces <= 0) {
-        return this
-    }
-
-    return this + " ".repeat(spaces)
-}
-
 fun underlineString(index: Int, text: String): String {
     return underlineString(index..index, text)
 }

@@ -39,13 +39,4 @@ class StringTest {
             "^     ", actual = underlineString(0, "easy hehe")
         )
     }
-
-    @Test
-    fun testMakeWideAs() {
-        assertEquals("hi ", "hi".makeStringWideAs("ayo"))
-        assertEquals("hi  ", "hi".makeStringWideAs("ayoo"))
-        assertEquals("hi", "hi".makeStringWideAs("no"))
-        assertEquals("hi", "hi".makeStringWideAs("?"))
-        assertEquals("hi     ", "hi".makeStringWideAs("whenthe"))
-    }
 }

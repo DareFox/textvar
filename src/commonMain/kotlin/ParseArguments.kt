@@ -79,7 +79,7 @@ fun showHelp(message: String?): Nothing {
     val longestString = arguments.keys.maxBy { it.length }
 
     arguments.forEach {
-        val wideKey = it.key.makeStringWideAs(longestString)
+        val wideKey = it.key.padEnd(longestString.length, ' ')
         println("${wideKey}\t\t\t${it.value}")
     }
 
